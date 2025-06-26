@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & FAQ - Student Attendance Monitoring System</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Attendance Monitor</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+                <li><a href="help.html" class="active">Help</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Help Section -->
+    <section class="content-section">
+        <div class="content-container">
+            <h2>Help & Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> How do I register a new student?</h3>
+                <p>Navigate to the "Manage Student Information" page. You will find a registration form there. Fill in all the required details, upload a student image, and click "Register Student".</p>
+            </div>
+
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> How do I record student attendance?</h3>
+                <p>Go to the "Record Student Attendance" page. Enter the student's name and roll number. A calendar will appear where you can mark days as 'Present' (green) or 'Absent' (red).</p>
+            </div>
+
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> Can I view attendance records for past months?</h3>
+                <p>Yes, on the attendance page, you can select different months and years to view the attendance history for a specific student.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> What is LUSY and how can she help?</h3>
+                <p>LUSY is your AI assistant, located at the bottom right of the home page. You can ask her any questions related to the system or general queries, and she will provide instant answers by leveraging information from the web (via Google SEO).</p>
+            </div>
+
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> Is my data secure?</h3>
+                <p>Yes, we prioritize data security. All data is stored using Firebase Firestore, which provides robust security features. Access to data is controlled based on user authentication.</p>
+            </div>
+
+            <p class="contact-support">If you have further questions, feel free to use the LUSY AI assistant on the home page or contact our support team at support@attendancemonitor.com.</p>
+        </div>
+    </section>
+
+    <!-- Modal for messages (from script.js) -->
+    <div id="customModal" class="modal"></div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Student Attendance Monitoring System. All rights reserved.</p>
+    </footer>
+
+    <!-- Firebase SDK Imports -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script type="module" src="firebase-init.js"></script>
+    <script src="script.js"></script> <!-- For modal and ripple -->
+</body>
+</html>

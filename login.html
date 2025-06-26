@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Student Attendance Monitoring System</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Attendance Monitor</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html" class="active">Login</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+                <li><a href="help.html">Help</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="login-container">
+            <h2><i class="fas fa-sign-in-alt"></i> Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="action-button">Login</button>
+                <p class="register-link">Don't have an account? <a href="#" id="registerLink">Register here</a></p>
+            </form>
+            <button id="googleLoginBtn" class="google-login-button"><i class="fab fa-google"></i> Sign in with Google</button>
+        </div>
+    </section>
+
+    <!-- Modal for messages (from script.js) -->
+    <div id="customModal" class="modal"></div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Student Attendance Monitoring System. All rights reserved.</p>
+    </footer>
+
+    <!-- Firebase SDK Imports -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script type="module" src="firebase-init.js"></script>
+    <script src="script.js"></script> <!-- For modal and ripple -->
+    <script type="module">
+        import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+        import { auth } from './firebase-init.js'; // Import auth from your firebase-init.js
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('loginForm');
+            const registerLink = document.getElementById('registerLink');
+            const googleLoginBtn = document.getElementById('googleLoginBtn');
+
+            // Function to show custom modal (defined in script.js)
+            // Assumed to be globally available or imported if using modules extensively
+            function showModal(type, message, imageUrl = null, studentName = null, confirmCallback = null, cancelCallback = null) {
+                if (typeof window.showModal === 'function') {
+                    window.showModal(type, message, imageUrl, studentName, confirmCallback, cancelCallback);
+                } else {
+                    console.error("showModal function not found. Please ensure script.js is loaded correctly.");
+                    alert(message); // Fallback for testing
+                }
+            }
+
+            // Email/Password Login
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = loginForm.email.value;
+                const password = loginForm.password.value;
+
+                try {
+                    await signInWithEmailAndPassword(auth, email, password);
+                    showModal('success', 'Logged in successfully! Redirecting to Home...');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } catch (error) {
+                    let errorMessage = 'Login failed. Please check your credentials.';
+                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                        errorMessage = 'Invalid email or password.';
+                    } else if (error.code === 'auth/invalid-email') {
+                        errorMessage = 'The email address is not valid.';
+                    }
+                    showModal('error', errorMessage);
+                    console.error("Login error:", error);
+                }
+            });
+
+            // Email/Password Registration (simplified, could be a separate page)
+            registerLink.addEventListener('click', async (e) => {
+                e.preventDefault();
+                showModal('info', 'Enter your desired email and password to register. This will also log you in immediately.');
+
+                // Simple prompt for registration. In a real app, this would be a dedicated form.
+                const email = prompt("Enter email for registration:");
+                const password = prompt("Enter password (min 6 characters) for registration:");
+
+                if (email && password) {
+                    try {
+                        await createUserWithEmailAndPassword(auth, email, password);
+                        showModal('success', 'Registration successful! You are now logged in. Redirecting...');
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1500);
+                    } catch (error) {
+                        let errorMessage = 'Registration failed.';
+                        if (error.code === 'auth/email-already-in-use') {
+                            errorMessage = 'This email is already in use.';
+                        } else if (error.code === 'auth/weak-password') {
+                            errorMessage = 'Password should be at least 6 characters.';
+                        } else if (error.code === 'auth/invalid-email') {
+                            errorMessage = 'Invalid email address.';
+                        }
+                        showModal('error', errorMessage);
+                        console.error("Registration error:", error);
+                    }
+                } else {
+                    showModal('info', 'Registration cancelled.');
+                }
+            });
+
+            // Google Login
+            googleLoginBtn.addEventListener('click', async () => {
+                const provider = new GoogleAuthProvider();
+                try {
+                    await signInWithPopup(auth, provider);
+                    showModal('success', 'Signed in with Google successfully! Redirecting to Home...');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } catch (error) {
+                    let errorMessage = 'Google Sign-in failed.';
+                    if (error.code === 'auth/popup-closed-by-user') {
+                        errorMessage = 'Sign-in popup was closed.';
+                    } else if (error.code === 'auth/cancelled-popup-request') {
+                        errorMessage = 'Sign-in cancelled. Another popup was already open.';
+                    }
+                    showModal('error', errorMessage);
+                    console.error("Google login error:", error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

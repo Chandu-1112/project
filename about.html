@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Student Attendance Monitoring System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Attendance Monitor</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+                <li><a href="help.html">Help</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="content-section">
+        <div class="content-container">
+            <h2>About Our System</h2>
+            <p>Welcome to the Student Attendance Monitoring System! We are dedicated to providing a seamless and efficient solution for educational institutions to manage student attendance records. Our system aims to reduce administrative burden, improve accuracy, and provide valuable insights into student presence.</p>
+
+            <h3>Our Mission</h3>
+            <p>Our mission is to empower educators and administrators with a reliable tool that simplifies attendance tracking, allowing them to focus more on nurturing student growth and less on manual record-keeping.</p>
+
+            <h3>Key Benefits</h3>
+            <ul>
+                <li><strong>Efficiency:</strong> Automate attendance marking and reduce manual errors.</li>
+                <li><strong>Accuracy:</strong> Maintain precise records of student presence and absence.</li>
+                <li><strong>Insights:</strong> Generate reports to identify attendance patterns and inform interventions.</li>
+                <li><strong>Accessibility:</strong> Easy-to-use interface accessible from various devices.</li>
+                <li><strong>Support:</strong> Integrated AI assistant (LUSY) for instant help and information.</li>
+            </ul>
+
+            <p>We are constantly working to enhance our system and add new features to meet the evolving needs of modern education. Thank you for choosing Student Attendance Monitor!</p>
+        </div>
+    </section>
+
+    <!-- Modal for messages (from script.js) -->
+    <div id="customModal" class="modal"></div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Student Attendance Monitoring System. All rights reserved.</p>
+    </footer>
+
+    <!-- Firebase SDK Imports -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script type="module" src="firebase-init.js"></script>
+    <script src="script.js"></script> <!-- For modal and ripple -->
+</body>
+</html>

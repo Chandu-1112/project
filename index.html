@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Monitoring System - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Attendance Monitor</div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li> <!-- Added ID for logout -->
+                <li><a href="help.html">Help</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Student Attendance Monitoring System</h1>
+        <p>Efficiently track and manage student attendance with our advanced monitoring system. Simplify your administrative tasks and focus on what matters most - education.</p>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2>Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-user-plus icon"></i>
+                <h3>Student Registration</h3>
+                <p>Register new students with all necessary details and a profile picture.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-clipboard-check icon"></i>
+                <h3>Attendance Recording</h3>
+                <p>Quickly mark daily attendance and view records on a monthly calendar.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-chart-line icon"></i>
+                <h3>Reporting & Analytics</h3>
+                <p>Generate detailed attendance reports for better insights.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-comments icon"></i>
+                <h3>AI Assistant (LUSY)</h3>
+                <p>Get instant help and answers to your queries with our intelligent chatbot.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Gallery (Updated for scrolling) -->
+    <section class="gallery">
+        <h2>Our College Facilities</h2>
+        <div class="image-carousel-container">
+            <div class="image-carousel">
+                <img src="https://placehold.co/800x500/A7C7E7/FFFFFF?text=College+Building+1" alt="College Building 1">
+                <img src="https://placehold.co/800x500/87CEEB/FFFFFF?text=Students+in+Class" alt="Students in Class">
+                <img src="https://placehold.co/800x500/ADD8E6/FFFFFF?text=Library+Reading+Area" alt="Library">
+                <img src="https://placehold.co/800x500/B0E0E6/FFFFFF?text=Sports+Ground" alt="Sports Ground">
+                <img src="https://placehold.co/800x500/AFEEEE/FFFFFF?text=Laboratory" alt="Laboratory">
+            </div>
+        </div>
+    </section>
+
+    <!-- Button Section -->
+    <section class="button-section">
+        <div class="button-container">
+            <button class="action-button" id="studentInfoBtn" onclick="location.href='student-info.html'">
+                Manage Student Information
+            </button>
+            <button class="action-button" id="attendanceBtn" onclick="location.href='attendance.html'">
+                Record Student Attendance
+            </button>
+        </div>
+    </section>
+
+    <!-- LUSY Chatbox -->
+    <div id="chatbox-container">
+        <div id="chatbox-header">
+            LUSY Assistant <i class="fas fa-robot"></i>
+            <span id="chatbox-close-btn">&times;</span>
+        </div>
+        <div id="chatbox-messages">
+            <div class="chat-message bot-message">Hello! I'm LUSY, your AI assistant. How can I help you today?</div>
+        </div>
+        <div id="chatbox-input-area">
+            <input type="text" id="chat-input" placeholder="Type your message...">
+            <button id="send-chat-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <button id="open-chat-btn" class="chat-toggle-button"><i class="fas fa-comments"></i> LUSY</button>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Student Attendance Monitoring System. All rights reserved.</p>
+    </footer>
+
+    <!-- Firebase SDK Imports -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script type="module" src="firebase-init.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
